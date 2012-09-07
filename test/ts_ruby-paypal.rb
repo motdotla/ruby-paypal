@@ -1,7 +1,6 @@
 require 'pp'
 require 'test/unit'
 require 'lib/ruby-paypal/paypal'
-require 'lib/ruby-paypal/credit_card_checks'
 
 
 class RubyPayPal < Test::Unit::TestCase 
@@ -13,18 +12,6 @@ class RubyPayPal < Test::Unit::TestCase
   def test_do_direct_payment_sale 
 #    resp = @paypal.do_direct_payment_sale('202.156.13.1', '14.34', 'visa', '4574806205610007', '022017', 'Test', 'User')
 #    assert_equal("Success", resp.ack) 
-  end
-
-  def test_luhn_check
-    @test_data.each { |type, number|
-      assert_equal(@paypal.luhn_check(number), true)      
-    }
-  end
-  
-  def test_card_type_check
-    @test_data.each { |type, number|
-      assert_equal(@paypal.card_type_check(type,number), true)
-    }
   end
 
   def test_do_direct_payment_authorization

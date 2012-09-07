@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.files = [
     "README",
     "lib/ruby-paypal.rb",
-    "lib/ruby-paypal/credit_card_checks.rb",
     "lib/ruby-paypal/paypal.rb",
     "test/ts_ruby-paypal.rb"
   ]

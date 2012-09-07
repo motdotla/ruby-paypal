@@ -2,7 +2,6 @@ require 'pp'
 require 'net/http'
 require 'net/https'
 require 'uri'
-require 'ruby-paypal/credit_card_checks'
 
 SANDBOX_SERVER = 'api-3t.sandbox.paypal.com/nvp'
 PRODUCTION_SERVER = 'api-3t.paypal.com/nvp'
@@ -246,8 +245,6 @@ Check for updates in our blogs:
 =end
 
 class Paypal
-  include CreditCardChecks
-
   @@debug = false
 
   def self.debug
@@ -320,9 +317,6 @@ class Paypal
       'IPADDRESS' => ipaddress }
       params['CVV2'] = cvv2 unless cvv2.nil?
       params.merge! other_params
-
-      raise 'Invalid credit card number' if not luhn_check(params['ACCT'])
-      raise 'Invalid credit card type' if not card_type_check(params['CREDITCARDTYPE'], params['ACCT'])
 
       make_nvp_call(params)
     end
